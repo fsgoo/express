@@ -3,16 +3,15 @@
 <p align="center">支持快递鸟、快递100的快递查询SDK</p>
 
 [![Build Status](https://travis-ci.org/inbjo/express.svg?branch=master)](https://travis-ci.org/inbjo/express)
-[![StyleCI build status](https://github.styleci.io/repos/178779366/shield)](https://github.styleci.io/repos/178779366)
-[![Latest Stable Version](https://poser.pugx.org/flex/express/v/stable)](https://packagist.org/packages/flex/express)
-[![Total Downloads](https://poser.pugx.org/flex/express/downloads)](https://packagist.org/packages/flex/express)
-[![License](https://poser.pugx.org/flex/express/license)](https://packagist.org/packages/flex/express)
+[![Latest Stable Version](https://poser.pugx.org/Flex/express/v/stable)](https://packagist.org/packages/Epinzu/express)
+[![Total Downloads](https://poser.pugx.org/Flex/express/downloads)](https://packagist.org/packages/Epinzu/express)
+[![License](https://poser.pugx.org/Flex/express/license)](https://packagist.org/packages/Epinzu/express)
 
 
 ## 安装
 
 ```shell
-$ composer require flex/express -vvv
+$ composer require Epinzu/express -vvv
 ```
 ## 配置
 
@@ -21,7 +20,7 @@ $ composer require flex/express -vvv
 ## Usage
 ### 快递100
 ```php
-use Flex\Express\Express100;
+use Epinzu\Express\Express100;
 
 $express = new Express100('app_id','app_key');
 $info = $express->track($tracking_code, $shipping_code, $phone); //快递单号 物流公司编号 收件人手机号(顺丰必填 其他快递选填)
@@ -58,7 +57,7 @@ $info = $express->track($tracking_code, $shipping_code, $phone); //快递单号 
 
 ### 快递鸟
 ```php
-use Flex\Express\ExpressBird;
+use Epinzu\Express\ExpressBird;
 
 $express = new ExpressBird('app_id','app_key'); 
 $info = $express->track($tracking_code, $shipping_code，$order_code); //快递单号 物流公司编号 订单编号(选填)
@@ -90,7 +89,7 @@ $info = $express->track($tracking_code, $shipping_code，$order_code); //快递�
 ```
 ### 通用方法
 ```php
-use Flex\Express\Express;
+use Epinzu\Express\Express;
 
 
 $express = new Express($app_id,$app_key,$type); //$type支持类型'express100'、'expressbird'
@@ -122,7 +121,7 @@ $info = $express->track($tracking_code, $shipping_code，$additional); ////查�
  EXPRESS_TYPE=express100
  ```
  
- 可以用两种方式来获取 `Flex\Express\Express` 实例：
+ 可以用两种方式来获取 `Epinzu\Express\Express` 实例：
  
  #### 方法参数注入
  

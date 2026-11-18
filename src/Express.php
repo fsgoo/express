@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the flex/express.
+ * This file is part of the Epinzu/express.
  *
- * (c) Flex<2345@mail.com>
+ * (c) Epinzu<k@epinzu.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace Flex\Express;
+namespace Epinzu\Express;
 
-use Flex\Express\Exceptions\InvalidArgumentException;
+use Epinzu\Express\Exceptions\InvalidArgumentException;
 
 class Express
 {
@@ -65,7 +65,7 @@ class Express
     {
         if ('express100' == $this->type) {
             if (isset($additional['phone'])) {
-                $phone = $additional['phone'];
+                $phone = substr($additional['phone'], -4);
             } else {
                 $phone = '';
             }
@@ -80,11 +80,16 @@ class Express
             } else {
                 $order_code = '';
             }
+			if (isset($additional['phone'])) {
+                $phone = substr($additional['phone'], -4);
+            } else {
+                $phone = '';
+            }
             $express = new ExpressBird($this->app_id, $this->app_key);
 
-            return $express->track($tracking_code, $shipping_code, $order_code);
+            return $express->track($tracking_code, $shipping_code, $order_code, $phone);
         }
 
-        return [];
+        return '';
     }
 }
