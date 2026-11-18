@@ -44,7 +44,7 @@ class Express
             throw new InvalidArgumentException('Unsupported Type');
         }
 
-        $this->type = $type;
+        $this->type = strtolower($type);
         $this->app_id = $app_id;
         $this->app_key = $app_key;
     }

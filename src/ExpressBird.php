@@ -44,7 +44,7 @@ class ExpressBird
      * @param string $tracking_code 快递单号
      * @param string $shipping_code 物流公司编号
      * @param string $order_code    订单编号(选填)
-     * @param string $$customer_name 顺丰单号查询寄件人或收件人的手机号后四位数字
+     * @param string $customer_name 顺丰单号查询寄件人或收件人的手机号后四位数字
      *
      * @return string
      *
@@ -61,10 +61,14 @@ class ExpressBird
             throw new InvalidArgumentException('ShippingCode is required');
         }
 
-        if($shipping_code=='SF') {
-            if($customer_name) {
-                //$customer_name = substr($customer_name, -1, 4);
-            }else {
+        if ('SF' == $shipping_code) {
+            $customer_name = trim((string) $customer_name);
+            if ('' === $customer_name) {
+                throw new InvalidArgumentException('请输入手机号后四位');
+            }
+            // 快递鸟要求传收/寄件人手机号后四位，调用方可能直接传整段手机号
+            $customer_name = substr($customer_name, -4);
+            if (!preg_match('/^\d{4}$/', $customer_name)) {
                 throw new InvalidArgumentException('请输入手机号后四位');
             }
         }
